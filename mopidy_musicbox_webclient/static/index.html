@@ -8,7 +8,7 @@
     <script type="text/javascript" src="vendors/jquery_cookie/jquery.cookie.js"></script>
     <script type="text/javascript" src="js/custom_scripting.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="vendors/jquery_mobile_flat_ui_theme/jquery.mobile.flatui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="vendors/jquery_mobile_flat_ui_theme/jquery.mobile.flatui.css"/>
     <link rel="icon" type="image/gif" href="images/icons/musicbox32.gif" />
     <link rel="apple-touch-icon" href="images/icons/musicbox57.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="images/icons/musicbox72.png" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="images/icons/musicbox32.gif" />
 
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-title" content="MusicBox" />
+    <meta name="apple-mobile-web-app-title" content="{{ title }}" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
@@ -36,8 +36,8 @@
 
 </head>
 
-<body data-websocket-url="{{websocketUrl}}" data-is-musicbox="{{isMusicBox}}" data-has-alarmclock="{{hasAlarmClock}}" data-on-track-click="{{onTrackClick}}">
-<div data-role="page" id="page" class="ui-responsive-panel" data-theme="c">
+<body data-websocket-url="{{ websocketUrl }}" data-is-musicbox="{{ isMusicBox }}" data-has-alarmclock="{{ hasAlarmClock }}" data-on-track-click="{{ onTrackClick }}" data-program-name="{{ programName }}" data-hostname="{{ hostname }}">
+<div data-role="page" id="page" class="ui-responsive-panel" data-theme="c" data-title="{{ title }}">
 <div data-role="panel" id="panel" data-position="left" data-theme="a" data-display="reveal" data-position-fixed="true">
 
     <ul class="ui-listview mainNav" data-role="listview" data-theme="a">
@@ -91,6 +91,15 @@
                 <label for="volumeslider" class="ui-hidden-accessible">Volume</label>
                 <input id="volumeslider" data-highlight="true" name="volumeslider" data-mini="true" type="range" min="0"
                        value="0" max="100"/>
+            </div>
+        </li>
+        <li data-icon="false">
+            <div class="hostInfo">
+                {% if hostname == serverIP %}
+                    <span class="hostInfo">{{programName}} running on {{ hostname }}:{{ serverPort}}</span>
+                {% else %}
+                    <span class="hostInfo">{{programName}} running on {{ hostname }} at {{ serverIP }}:{{ serverPort}}</span>
+                {% end %}
             </div>
         </li>
     </ul>
@@ -215,9 +224,17 @@
 </div><!--/confirm delete stream-->
 
 <div data-role="header" data-tap-toggle="false" id="header" data-position="fixed" class="header-breakpoint headerbtn">
-    <a id="headermenubtn" href="#panel"><i class="fa fa-align-justify"></i></a>
-    <h1 id="contentHeadline">Musicbox</h1>
+    <img src="images/rp_logo@3x.png" alt="" class="rp-logo">
     <a id="headersearchbtn" href="#" onclick="switchContent('search' ); return false;" title="Search"><i class="fa fa-search"></i></a>
+    <!-- <h1 id="contentHeadline">Initializing...</h1> -->
+    <a id="headermenubtn" href="#panel"><i class="fa fa-align-justify"></i></a>
+    <ul id="rp-nav">
+        <li class="on"><a href="">File Manager</a></li>
+        <li><a href="">Music Player</a></li>
+        <li><a href="">Connection</a></li>
+        <li><a href="">Web Terminal</a></li>
+        <li><a href="">Setting</a></li>
+    </ul>
 </div>
 <!-- /header -->
 
@@ -460,13 +477,13 @@
 </div>
 
 <div data-role="footer" data-tap-toggle="false" data-position="fixed" id="nowPlayingFooter">
-        <div class="footerControls" style="padding-left: 10px;">
+        <div class="footerControls" style="padding-left: 20px;">
             <div style="float: left;">
                 <a href="#" onclick="controls.doPrevious(); return false"><span id="btprev" title="Previous"><i class="fa fa-fast-backward"></i></span></a>
                 <a href="#" onclick="controls.doPlay(); return false"><span id="btplayNowPlaying" title="Play"><i class="fa fa-play"></i></span></a>
                 <a href="#" onclick="controls.doNext(); return false"><span id="btnext" title="Next"><i class="fa fa-fast-forward"></i></span></a>
             </div>
-            <div style="float: right; margin-right: 10px;">
+            <div style="float: right; margin-right: 10px; font-size: 16px;" class="rp-music-btn">
                 <a href="#" onclick="controls.doRandom(); return false"><span id="randombt" title="Random"><i class="fa fa-random"></i></span></a>
                 <a href="#" onclick="controls.doRepeat(); return false"><span id="repeatbt" title="Repeat"><i class="fa fa-repeat"></i></span></a>
                 <a href="#" onclick="controls.doConsume(); return false"><span id="consumebt" title="Consume"><i class="fa fa-cutlery"></i></span></a>
@@ -476,6 +493,35 @@
         </div>
 </div>
 <!-- /footer -->
+
+<!-- respeaker common footer -->
+<div class="rp-footer-menu" >
+    <a href="/music">
+        <div class="icon active">
+            <img src="images/Music@2x.png" >
+        </div>
+    </a>
+    <a href="/files">
+        <div class="icon">
+            <img src="images/folder@2x.png" >
+        </div>
+    </a>
+    <a href="/network">
+        <div class="icon">
+                <img src="images/link@2x.png" >
+        </div>
+    </a>
+    <a href="/terminal">
+        <div class="icon">
+                <img src="images/layer@2x.png" >
+        </div>
+    </a>
+    <a href="/settings">
+        <div class="icon">
+                <img src="images/settings-1@2x.png" >
+        </div>
+    </a>
+</div>
 
 </div>
 <!-- /page one -->

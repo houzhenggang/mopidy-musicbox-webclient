@@ -160,6 +160,22 @@
     display: inline;
 }
 
+div.hostInfo {
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+span.hostInfo {
+    font-weight: normal;
+    font-size: 0.75em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /********************
  *  Pages, content  *
  ********************/
@@ -197,11 +213,13 @@
 /*** home ***/
 #homerows div {
     text-align: center;
-    background-color: #2C3E50;
+    background-color: #fff;
     padding: 2px;
     padding-top: 20px;
     border: 2px solid white;
-    color: white;
+    border-radius: 2px;
+    color: #816536;
+    box-shadow: 1px 1px 2px 0px #DDDDDD;
 }
 
 #homerows div i {
@@ -315,14 +333,14 @@
  **********************/
 
 #nowPlayingFooter {
-    height: 50px;
-    line-height: 48px;
+    height: 75px;
+    line-height: 75px;
     text-align: center;
 }
 
 .footerControls {
     height: 100%;
-    font-size: 25px;
+    font-size: 14px;
     padding-right: 10px;
 }
 
@@ -334,7 +352,7 @@
 }
 
 .footerControls #btplayNowPlaying {
-    font-size: 42px;
+    font-size: 22px;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -427,7 +445,7 @@
 .ui-icon-play,
 .ui-icon-playNext,
 .ui-icon-add,
-.ui-icon-addAll, 
+.ui-icon-addAll,
 .ui-icon-remove {
     background-color: unset;
     background-image: none;
@@ -599,6 +617,7 @@ body * {
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
+    font-family: "OpenSans", Helvetica, Arial, sans-serif;
 }
 
 /* but fix for text input (safari certainly needs it)*/
@@ -608,4 +627,135 @@ input[type=text] {
     -ms-user-select: text;
     -o-user-select: text;
     user-select: text;
+}
+
+/* reset css
+ * edit by obg_tech 2016-12-27
+ */
+
+#header {
+    /*position: relative;*/
+    background-color: #fff;
+    height: 70px;
+    /*line-height: 70px;*/
+    border-bottom: none;
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.11);
+    clear: both;
+}
+#header .rp-logo {
+    float: left;
+    width: 128px;
+    height: 18px;
+    margin: 24px 0 0 24px;
+}
+#panel {
+    background-color: #fff;
+    box-shadow: none;
+    border-right: 1px solid
+    font-size: 12px;
+}
+#homepane, #nowPlayingpane, #playlistspane, #browsepane {
+    background-color: #f9f9f9;
+}
+.rp-music-btn a {
+    margin: 0 5px;
+}
+
+#homepane h4 {
+    font-size: 12px;
+}
+
+.ui-loader-verbose h1 {
+    font-size: 12px
+}
+body h4 {
+    color: #3d3d3d;
+    font-size: 12px;
+}
+/* header btn */
+#headersearchbtn { display: none;}
+#headersearchbtn,
+#headermenubtn {
+    top: 17px;
+    width: 35px;
+    height: 32px;
+    background-color: #fff;
+}
+#headersearchbtn {
+    left: 170px;
+}
+#headermenubtn {
+    right: 10px;
+}
+#headersearchbtn span { font-size: 12px;}
+#headersearchbtn .fa,
+#headermenubtn .fa { color: #9B8153; }
+
+/*公共导航*/
+#rp-nav {
+    position: absolute;
+    right: 80px;
+    /*float: left;*/
+    clear: both;
+    z-index: 10;
+    margin: 0;
+}
+#rp-nav li {
+    float: left;
+    margin-left: 24px;
+    border-bottom: 2px solid transparent;
+}
+#rp-nav .on {
+    border-bottom: 2px solid #9B8153;
+}
+#rp-nav li a {
+    display: block;
+    color: #666;
+    font-size: 14px;
+    line-height: 70px;
+}
+/*公共底部*/
+.rp-footer-menu {
+    display: none;
+  position: fixed;
+  bottom: 0px;
+  background: #FFFFFF;
+  box-shadow: 0px -2px 4px 0px rgba(0,0,0,0.11);
+  height: 70px;
+  width: 100%;
+  left: 0px;
+}
+.rp-footer-menu .ui-link {
+    width: 20%;
+}
+.rp-footer-menu .icon {
+  /*padding: 23px 6.8%;
+  display: inline-block;*/
+  width: 20%;
+  float: left;
+  line-height: 68px;
+  text-align: center;
+  border-bottom: 2px solid transparent;
+}
+.rp-footer-menu .icon img {
+  width: 20px;
+  margin-top: 2px;
+}
+.rp-footer-menu .active {
+  border-bottom: 2px solid #9B8153;
+}
+/*处理移动端可见元素*/
+@media screen and (max-width: 560px){
+    #rp-nav { display: none;}
+    .rp-footer-menu {
+        display: block;
+    }
+    /* now playing footer */
+    #nowPlayingFooter {
+        bottom: 70px;
+    }
+    /* normal footer */
+    #normalFooter {
+        bottom: 70px;
+    }
 }
